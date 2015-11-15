@@ -31,13 +31,17 @@ class SerialConnectionPanel extends Component {
     }
   }
   render() {
-    const {loadingState} = this.props.serial;
+    const {loadingState, ports} = this.props.serial;
+    const portNames = ports.map(p => p.comName);
     return (<div className="ui form">
           <div className="two fields">
             <div className="field">
               <label>Port</label>
-              <Dropdown options={this.state.ports} selected={this.state.port}
-                onChange={(port) => this.setState({port})} />
+              <Dropdown
+                  options={portNames}
+                  selected={this.state.port}
+                  onChange={(port) => this.setState({port})}
+              />
             </div>
             <div className="field">
               <label>Baudrate</label>

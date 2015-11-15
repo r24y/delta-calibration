@@ -19,7 +19,7 @@ export default function serial(state = defaultState, action) {
       return {
         ...state,
         loadingState: 'idle',
-        ports: action.ports,
+        ports: action.ports.filter(p => p.pnpId),
       };
     case SERIAL_PORT_LIST_FAILURE:
       return {
