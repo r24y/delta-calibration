@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 
-import MainMenu from './MainMenu';
 import MachineControls from '../controls/MachineControls';
 import GcodeConsole from '../controls/GcodeConsole';
 import NotConnected from '../controls/NotConnected';
@@ -15,8 +14,7 @@ import Grid, {Column} from '../components/Grid';
 
 export default class Main extends Component {
   render() {
-    return (<div className="" style={{padding: 20, paddingTop: 60}}>
-        <MainMenu/>
+    return (<div className="" style={{padding: 20, paddingTop: 20}}>
         {this.props.children}
     </div>);
   }

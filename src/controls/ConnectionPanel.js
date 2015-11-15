@@ -38,9 +38,6 @@ export default class ConnectionPanel extends Component {
     };
   }
   render() {
-    const ConnectionPanel = CONNECTION_PANELS[this.state.connectionType];
-    const BedPanel = BED_TYPE_PANELS[this.state.bedShape] || <div/>;
-    const PrinterPanel = PRINTER_TYPE_PANELS[this.state.printerGeom] || <div/>;
     return (<div>
       <Segment className="top attached">
         <h3 className="ui dividing header">Printer configuration</h3>
@@ -52,42 +49,11 @@ export default class ConnectionPanel extends Component {
               <div className="ui basic label">mm</div>
             </div>
           </div>
-          <div className="field">
-            <label>Bed shape</label>
-            <Dropdown 
-                defaultText="Select bed shape"
-                onChange={(bedShape) => this.setState({bedShape})}
-                options={Object.keys(BED_TYPE_PANELS)}
-                selected={this.state.bedShape}
-            />
-          </div>
         </div>
-        <BedPanel />
-        <div className="ui form">
-          <div className="field">
-            <label>Printer format</label>
-            <Dropdown 
-                defaultText="Select format"
-                onChange={(printerGeom) => this.setState({printerGeom})}
-                options={Object.keys(PRINTER_TYPE_PANELS)}
-                selected={this.state.printerGeom}
-            />
-          </div>
-        </div>
-        <PrinterPanel />
+        <CircularBedOptions />
+        <DeltaPrinterOptions />
         <h3 className="ui dividing header">Connection</h3>
-        <div className="ui form">
-          <div className="field">
-            <label>Connection type</label>
-            <Dropdown
-                defaultText="Select connection type"
-                onChange={(connectionType) => this.setState({connectionType})}
-                options={Object.keys(CONNECTION_PANELS)}
-                selected={this.state.connectionType}
-            />
-          </div>
-        </div>
-        <ConnectionPanel />
+        <SerialConnectionPanel />
       </Segment>
       <div className="two bottom attached ui buttons">
         <button className="ui negative button" onClick={() => this.props.onCancel()}>
